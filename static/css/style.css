@@ -48,21 +48,18 @@ body {
     color: var(--plick-orange) !important;
 }
 
-/* Logo styles */
-.logo-cart {
-    position: relative;
+/* PlickMarket Logo SVG styles */
+.plick-logo {
+    width: 40px;
+    height: 40px;
     display: inline-block;
+    vertical-align: middle;
 }
 
-.logo-p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: 700;
-    font-size: 0.8em;
-    color: var(--plick-white);
+.plick-logo-text {
     font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 700;
+    color: var(--plick-orange);
 }
 
 /* Search bar styles */
