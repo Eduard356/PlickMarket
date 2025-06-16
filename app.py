@@ -97,9 +97,19 @@ def product_detail(product_id):
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    product_id = int(request.form.get('product_id'))
-    quantity = int(request.form.get('quantity', 1))
-    session_id = session.get('session_id', request.remote_addr)
+    product_id_str = request.form.get('product_id')
+    quantity_str = request.form.get('quantity', '1')
+    
+    if not product_id_str:
+        return redirect(request.referrer or url_for('index'))
+    
+    try:
+        product_id = int(product_id_str)
+        quantity = int(quantity_str)
+    except (ValueError, TypeError):
+        return redirect(request.referrer or url_for('index'))
+    
+    session_id = session.get('session_id', request.remote_addr or 'anonymous')
     
     # Ensure session has an ID
     if 'session_id' not in session:
@@ -126,43 +136,95 @@ def add_to_cart():
 
 @app.route('/remove_from_cart', methods=['POST'])
 def remove_from_cart():
-    product_id = int(request.form.get('product_id'))
+    product_id_str = request.form.get('product_id')
+    if not product_id_str:
+        return redirect(request.referrer or url_for('index'))
     
-    if 'cart' in session:
-        session['cart'] = [item for item in session['cart'] if item['product_id'] != product_id]
-        session.modified = True
+    try:
+        product_id = int(product_id_str)
+    except (ValueError, TypeError):
+        return redirect(request.referrer or url_for('index'))
+    
+    session_id = session.get('session_id', request.remote_addr or 'anonymous')
+    
+    cart_item = CartItem.query.filter_by(
+        session_id=session_id, 
+        product_id=product_id
+    ).first()
+    
+    if cart_item:
+        db.session.delete(cart_item)
+        db.session.commit()
     
     return redirect(request.referrer or url_for('index'))
 
 @app.route('/update_cart', methods=['POST'])
 def update_cart():
-    product_id = int(request.form.get('product_id'))
-    quantity = int(request.form.get('quantity'))
+    product_id_str = request.form.get('product_id')
+    quantity_str = request.form.get('quantity')
     
-    if 'cart' in session:
-        cart = session['cart']
-        for item in cart:
-            if item['product_id'] == product_id:
-                if quantity > 0:
-                    item['quantity'] = quantity
-                else:
-                    cart.remove(item)
-                break
-        session['cart'] = cart
-        session.modified = True
+    if not product_id_str or not quantity_str:
+        return redirect(request.referrer or url_for('index'))
     
+    try:
+        product_id = int(product_id_str)
+        quantity = int(quantity_str)
+    except (ValueError, TypeError):
+        return redirect(request.referrer or url_for('index'))
+    
+    session_id = session.get('session_id', request.remote_addr or 'anonymous')
+    
+    cart_item = CartItem.query.filter_by(
+        session_id=session_id, 
+        product_id=product_id
+    ).first()
+    
+    if quantity > 0:
+        if cart_item:
+            cart_item.quantity = quantity
+        else:
+            cart_item = CartItem(
+                session_id=session_id,
+                product_id=product_id,
+                quantity=quantity
+            )
+            db.session.add(cart_item)
+    elif cart_item:
+        db.session.delete(cart_item)
+    
+    db.session.commit()
     return redirect(request.referrer or url_for('index'))
 
 @app.route('/clear_cart')
 def clear_cart():
-    session.pop('cart', None)
+    session_id = session.get('session_id', request.remote_addr or 'anonymous')
+    
+    CartItem.query.filter_by(session_id=session_id).delete()
+    db.session.commit()
+    
     return redirect(url_for('index'))
 
 @app.context_processor
 def inject_cart():
-    cart = session.get('cart', [])
-    cart_total = sum(item['price'] * item['quantity'] for item in cart)
-    cart_count = sum(item['quantity'] for item in cart)
+    session_id = session.get('session_id', request.remote_addr or 'anonymous')
+    cart_items = CartItem.query.filter_by(session_id=session_id).all()
+    
+    cart = []
+    cart_total = 0
+    cart_count = 0
+    
+    for item in cart_items:
+        cart_data = {
+            'product_id': item.product_id,
+            'name': item.product.name,
+            'price': float(item.product.price),
+            'image': item.product.image,
+            'quantity': item.quantity
+        }
+        cart.append(cart_data)
+        cart_total += float(item.product.price) * item.quantity
+        cart_count += item.quantity
+    
     return dict(cart=cart, cart_total=cart_total, cart_count=cart_count)
 
 if __name__ == '__main__':
