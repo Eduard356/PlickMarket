@@ -1,0 +1,45 @@
+Crea una página web tipo Mercado Libre con una interfaz inspirada en "PlickMarket". Utiliza los colores principales: 
+- Amarillo: #FFD126
+- Naranja: #FF6426
+
+Y la tipografía "Mplus 1p" y "Mplus 1p Bold". El logo es una letra "P" estilizada dentro de un carrito de compras. Puedes usar el texto "PlickMarket - All in Pick" como parte del encabezado. Esta página debe estar diseñada de forma moderna y responsiva, y contener:
+
+1. Una **barra de navegación fija** con fondo amarillo (#FFD126) que incluya:
+    - El logo de PlickMarket
+    - Un campo de búsqueda
+    - Botones de inicio de sesión y ver carrito
+
+2. Una **sección de productos** mostrados como tarjetas en grid responsivo, cada tarjeta debe tener:
+    - Imagen de producto
+    - Nombre del producto
+    - Precio
+    - Botón de "Agregar al carrito"
+
+3. Un **modal emergente** o carrito flotante que muestre los productos agregados con sus precios y total.
+
+4. Un **pie de página** simple con los datos de contacto o información de la tienda ficticia.
+
+**Extras opcionales:**
+- Crear una página de detalles del producto al hacer clic sobre un producto
+- Animaciones sutiles al pasar el mouse por las tarjetas de producto
+
+**Tecnologías permitidas:**
+- HTML, CSS, JavaScript puro (sin frameworks)
+- O puedes usar Tailwind CSS o Bootstrap para estilos si prefieres
+
+**Estructura del proyecto:**
+- `index.html` (estructura de la página)
+- `style.css` (colores y fuentes según guía)
+- `script.js` (funcionalidad de carrito y modal)
+- Carpeta `img/` con al menos 6 imágenes de productos ficticios
+
+**Diseño visual:**
+- Fondo claro (#FFF o #FFD126)
+- Texto en color oscuro (#333 o negro)
+- Botones y elementos destacados en #FF6426
+- Tipografía clara, estilo "Mplus 1p" (puedes usar Google Fonts)
+
+El resultado debe ser una mini tienda online inspirada en Mercado Libre, pero con identidad visual de "PlickMarket" como se muestra en las siguientes referencias de color y estilo: 
+- Logo de carrito naranja con "P"
+- Colores predominantes: #FFD126 y #FF6426
+- Tipografía Mplus 1p

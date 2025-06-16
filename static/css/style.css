@@ -1,44 +1,51 @@
-/* MercadoLibre-inspired color scheme */
+/* PlickMarket color scheme */
 :root {
-    --ml-yellow: #fff159;
-    --ml-blue: #3483fa;
-    --ml-dark-blue: #2968c8;
-    --ml-light-gray: #f5f5f5;
-    --ml-dark-gray: #666;
-    --ml-success: #00a650;
-    --ml-danger: #ff6b6b;
+    --plick-yellow: #FFD126;
+    --plick-orange: #FF6426;
+    --plick-dark-orange: #e5541c;
+    --plick-light-gray: #f5f5f5;
+    --plick-dark-gray: #333;
+    --plick-success: #00a650;
+    --plick-danger: #ff6b6b;
+    --plick-white: #ffffff;
 }
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
 
 /* Body and general styles */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: var(--ml-light-gray);
+    font-family: 'M PLUS 1p', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--plick-white);
     padding-top: 80px;
+    color: var(--plick-dark-gray);
 }
 
 /* Navigation styles */
 .navbar {
-    background-color: var(--ml-yellow) !important;
+    background-color: var(--plick-yellow) !important;
     border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
-    color: var(--ml-blue) !important;
+    color: var(--plick-orange) !important;
     font-weight: 700;
+    font-family: 'M PLUS 1p', sans-serif;
 }
 
 .navbar-brand:hover {
-    color: var(--ml-dark-blue) !important;
+    color: var(--plick-dark-orange) !important;
 }
 
 .navbar-nav .nav-link {
-    color: var(--ml-dark-gray) !important;
+    color: var(--plick-dark-gray) !important;
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 .navbar-nav .nav-link:hover {
-    color: var(--ml-blue) !important;
+    color: var(--plick-orange) !important;
 }
 
 /* Search bar styles */
@@ -53,13 +60,13 @@ body {
 
 .input-group .btn {
     border-left: none;
-    background-color: var(--ml-blue);
-    border-color: var(--ml-blue);
+    background-color: var(--plick-orange);
+    border-color: var(--plick-orange);
 }
 
 .input-group .btn:hover {
-    background-color: var(--ml-dark-blue);
-    border-color: var(--ml-dark-blue);
+    background-color: var(--plick-dark-orange);
+    border-color: var(--plick-dark-orange);
 }
 
 /* Product card styles */
@@ -73,7 +80,7 @@ body {
 .product-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-    border-color: var(--ml-blue);
+    border-color: var(--plick-orange);
 }
 
 .product-image {
@@ -99,21 +106,23 @@ body {
 
 /* Button styles */
 .btn-primary {
-    background-color: var(--ml-blue);
-    border-color: var(--ml-blue);
+    background-color: var(--plick-orange);
+    border-color: var(--plick-orange);
     font-weight: 500;
+    font-family: 'M PLUS 1p', sans-serif;
     transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-    background-color: var(--ml-dark-blue);
-    border-color: var(--ml-dark-blue);
+    background-color: var(--plick-dark-orange);
+    border-color: var(--plick-dark-orange);
     transform: translateY(-1px);
 }
 
 .btn-success {
-    background-color: var(--ml-success);
-    border-color: var(--ml-success);
+    background-color: var(--plick-success);
+    border-color: var(--plick-success);
+    font-family: 'M PLUS 1p', sans-serif;
 }
 
 .btn-success:hover {
@@ -183,16 +192,16 @@ body {
 
 .breadcrumb-item + .breadcrumb-item::before {
     content: ">";
-    color: var(--ml-dark-gray);
+    color: var(--plick-dark-gray);
 }
 
 .breadcrumb-item a {
-    color: var(--ml-blue);
+    color: var(--plick-orange);
     text-decoration: none;
 }
 
 .breadcrumb-item a:hover {
-    color: var(--ml-dark-blue);
+    color: var(--plick-dark-orange);
     text-decoration: underline;
 }
 
@@ -289,15 +298,15 @@ body {
 
 /* Text utilities */
 .text-primary {
-    color: var(--ml-blue) !important;
+    color: var(--plick-orange) !important;
 }
 
 .text-success {
-    color: var(--ml-success) !important;
+    color: var(--plick-success) !important;
 }
 
 .text-danger {
-    color: var(--ml-danger) !important;
+    color: var(--plick-danger) !important;
 }
 
 /* Utility classes */
@@ -328,11 +337,11 @@ body {
 }
 
 .btn-outline-primary {
-    color: var(--ml-blue);
-    border-color: var(--ml-blue);
+    color: var(--plick-orange);
+    border-color: var(--plick-orange);
 }
 
 .btn-outline-primary:hover {
-    background-color: var(--ml-blue);
-    border-color: var(--ml-blue);
+    background-color: var(--plick-orange);
+    border-color: var(--plick-orange);
 }
