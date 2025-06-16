@@ -1,8 +1,8 @@
-# MercadoLibre Clone - E-commerce Platform
+# PlickMarket - E-commerce Platform
 
 ## Overview
 
-This is a Flask-based e-commerce web application inspired by MercadoLibre, featuring product browsing, search functionality, and shopping cart capabilities. The application is built with a modern tech stack focusing on simplicity and user experience.
+This is a Flask-based e-commerce web application with PlickMarket branding, featuring product browsing, search functionality, and shopping cart capabilities. The application uses PlickMarket's visual identity with yellow (#FFD126) and orange (#FF6426) color scheme, M PLUS 1p typography, and a distinctive "P" logo within a shopping cart icon.
 
 ## System Architecture
 
@@ -10,7 +10,9 @@ This is a Flask-based e-commerce web application inspired by MercadoLibre, featu
 - **Template Engine**: Jinja2 templates with Flask
 - **UI Framework**: Bootstrap 5.3.0 for responsive design
 - **Icons**: Font Awesome 6.4.0
-- **Styling**: Custom CSS with MercadoLibre-inspired color scheme
+- **Typography**: M PLUS 1p Google Fonts (regular and bold)
+- **Styling**: Custom CSS with PlickMarket color scheme (#FFD126 yellow, #FF6426 orange)
+- **Branding**: PlickMarket logo with "P" inside shopping cart icon
 - **JavaScript**: Vanilla JavaScript for interactive features
 
 ### Backend Architecture
@@ -88,7 +90,14 @@ This is a Flask-based e-commerce web application inspired by MercadoLibre, featu
 - PostgreSQL packages pre-installed for future database integration
 
 ## Changelog
-- June 16, 2025. Initial setup
+- June 16, 2025: Initial setup with MercadoLibre-style e-commerce platform
+- June 16, 2025: Complete rebranding to PlickMarket with new visual identity:
+  - Updated color scheme to PlickMarket colors (#FFD126 yellow, #FF6426 orange)
+  - Implemented M PLUS 1p typography from Google Fonts
+  - Created custom PlickMarket logo with "P" inside shopping cart icon
+  - Added comprehensive footer with contact information and social links
+  - Fixed JavaScript error in smooth scrolling functionality
+  - Maintained all existing functionality while updating visual design
 
 ## User Preferences
 

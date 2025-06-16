@@ -343,8 +343,51 @@ body {
 
 /* Form styles */
 .form-control:focus {
-    border-color: var(--ml-blue);
-    box-shadow: 0 0 0 0.2rem rgba(52, 131, 250, 0.25);
+    border-color: var(--plick-orange);
+    box-shadow: 0 0 0 0.2rem rgba(255, 100, 38, 0.25);
+}
+
+/* Footer styles */
+footer {
+    background-color: var(--plick-light-gray) !important;
+    border-top: 1px solid #e0e0e0;
+}
+
+footer h5, footer h6 {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 700;
+}
+
+/* PlickMarket specific enhancements */
+.plick-gradient {
+    background: linear-gradient(135deg, var(--plick-yellow) 0%, var(--plick-orange) 100%);
+}
+
+.plick-shadow {
+    box-shadow: 0 4px 15px rgba(255, 100, 38, 0.2);
+}
+
+/* Enhanced product cards */
+.product-card {
+    background: var(--plick-white);
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+    border-color: var(--plick-orange);
+    box-shadow: 0 10px 30px rgba(255, 100, 38, 0.15);
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 700;
+}
+
+.fw-bold {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 700;
 }
 
 /* Category filter buttons */
