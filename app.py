@@ -1,14 +1,69 @@
 import os
 import json
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
+class Base(DeclarativeBase):
+    pass
+
+db = SQLAlchemy(model_class=Base)
+
+# create the app
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key-change-in-production")
 
-# Load product data
+# configure the database
+database_url = os.environ.get("DATABASE_URL")
+if database_url:
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+        "pool_recycle": 300,
+        "pool_pre_ping": True,
+    }
+else:
+    # Fallback for development
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///plickmarket.db"
+
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# initialize the app with the extension
+db.init_app(app)
+
+# Initialize models once
+from models import init_models
+Product, User, CartItem = init_models(db)
+
+# Initialize database and create tables
+with app.app_context():    
+    db.create_all()
+    
+    # Check if products already exist and populate from JSON if needed
+    if Product.query.count() == 0:
+        try:
+            with open('data/products.json', 'r') as f:
+                json_products = json.load(f)
+            
+            for product_data in json_products:
+                product = Product(
+                    name=product_data['name'],
+                    description=product_data['description'],
+                    price=product_data['price'],
+                    category=product_data['category'],
+                    image=product_data['image'],
+                    stock=product_data.get('stock', 10),
+                    rating=product_data.get('rating', 4.5)
+                )
+                db.session.add(product)
+            
+            db.session.commit()
+            print(f"Initialized database with {len(json_products)} products")
+        except FileNotFoundError:
+            print("No products.json file found, starting with empty database")
+
+# Load product data from database
 def load_products():
-    with open('data/products.json', 'r') as f:
-        return json.load(f)
+    products = Product.query.all()
+    return [product.to_dict() for product in products]
 
 @app.route('/')
 def index():
@@ -44,32 +99,29 @@ def product_detail(product_id):
 def add_to_cart():
     product_id = int(request.form.get('product_id'))
     quantity = int(request.form.get('quantity', 1))
+    session_id = session.get('session_id', request.remote_addr)
     
-    # Initialize cart in session if it doesn't exist
-    if 'cart' not in session:
-        session['cart'] = []
+    # Ensure session has an ID
+    if 'session_id' not in session:
+        session['session_id'] = session_id
     
-    # Check if product already in cart
-    cart = session['cart']
-    existing_item = next((item for item in cart if item['product_id'] == product_id), None)
+    # Check if item already exists in cart
+    existing_item = CartItem.query.filter_by(
+        session_id=session_id, 
+        product_id=product_id
+    ).first()
     
     if existing_item:
-        existing_item['quantity'] += quantity
+        existing_item.quantity += quantity
     else:
-        products = load_products()
-        product = next((p for p in products if p['id'] == product_id), None)
-        if product:
-            cart.append({
-                'product_id': product_id,
-                'name': product['name'],
-                'price': product['price'],
-                'image': product['image'],
-                'quantity': quantity
-            })
+        cart_item = CartItem(
+            session_id=session_id,
+            product_id=product_id,
+            quantity=quantity
+        )
+        db.session.add(cart_item)
     
-    session['cart'] = cart
-    session.modified = True
-    
+    db.session.commit()
     return redirect(request.referrer or url_for('index'))
 
 @app.route('/remove_from_cart', methods=['POST'])
