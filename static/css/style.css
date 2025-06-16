@@ -21,6 +21,36 @@ body {
     color: var(--plick-dark-gray);
 }
 
+/* Hero Section */
+.hero-section {
+    margin-top: -80px;
+    padding-top: 120px;
+}
+
+.hero-logo {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Payment Methods Section */
+.payment-methods {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-card {
+    padding: 20px;
+    background: var(--plick-white);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.payment-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
 /* Navigation styles */
 .navbar {
     background-color: var(--plick-yellow) !important;
@@ -241,6 +271,24 @@ body {
     .btn-group .btn {
         margin-bottom: 0.5rem;
     }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .payment-card {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .product-card .card-body {
+        padding: 15px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -367,13 +415,46 @@ footer h5, footer h6 {
 /* Enhanced product cards */
 .product-card {
     background: var(--plick-white);
-    border: 2px solid transparent;
+    border: 1px solid #f0f0f0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .product-card:hover {
     border-color: var(--plick-orange);
-    box-shadow: 0 10px 30px rgba(255, 100, 38, 0.15);
+    box-shadow: 0 8px 25px rgba(255, 100, 38, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Product image container with badge */
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: var(--plick-orange);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    z-index: 2;
+    font-family: 'M PLUS 1p', sans-serif;
+}
+
+/* Price section styling */
+.price-section {
+    margin-bottom: 8px;
+}
+
+.price-section h5 {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
 }
 
 /* Typography enhancements */
