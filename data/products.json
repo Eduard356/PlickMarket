@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone Samsung Galaxy",
+    "description": "Latest smartphone with advanced camera and long battery life",
+    "price": 899.99,
+    "category": "Electronics",
+    "image": "https://pixabay.com/get/gd866272c69ccdf5ad7a05e2857245f2d256fa03bb3bc25780f9e12f81799c6f0a3020c7da7803f17e4acc3ef82f39127618264378505372c2d1e8bedac412165_1280.jpg",
+    "stock": 25,
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "name": "Laptop Gaming MSI",
+    "description": "High-performance gaming laptop with RGB keyboard",
+    "price": 1299.99,
+    "category": "Electronics",
+    "image": "https://pixabay.com/get/g5c93dd70ca36b46b473aefb5b39e06a941a01401cdf90d2ff0ea63403f341bc090d7686509fecf506c2aee00a30ec44d0e7f73fe7c467bfa1f1ce0151c273c1e_1280.jpg",
+    "stock": 15,
+    "rating": 4.7
+  },
+  {
+    "id": 3,
+    "name": "Wireless Headphones",
+    "description": "Premium noise-cancelling wireless headphones",
+    "price": 299.99,
+    "category": "Electronics",
+    "image": "https://pixabay.com/get/g694f6316907f0e7a32cf6a1ab8c5d13219c859b602f35175c53a38cbacc932de8906d5ada8de6c07287bce2bdb2ffe7f0ba3fdac6c1a285aaabaa97abc052887_1280.jpg",
+    "stock": 40,
+    "rating": 4.3
+  },
+  {
+    "id": 4,
+    "name": "Smart Watch Apple",
+    "description": "Apple Watch with health monitoring and GPS",
+    "price": 399.99,
+    "category": "Electronics",
+    "image": "https://pixabay.com/get/g745d16e7df110d5042ffac0d7c2733c89935ff528310cd83d8bd99fd4565e77becd6d5bc37893087a2673f45e4236158bfbdc5312ae9a324642abf3a94681c64_1280.jpg",
+    "stock": 30,
+    "rating": 4.6
+  },
+  {
+    "id": 5,
+    "name": "Tablet iPad Pro",
+    "description": "Professional tablet for creative work and productivity",
+    "price": 1099.99,
+    "category": "Electronics",
+    "image": "https://pixabay.com/get/g35df3875d35e95169ec84661b02da3ebc8206cc6b0e16976dc3426d43af2a3e4e8021246859e80a3907e6de9d58c3911230b76439ed5274dae6dad7a78c358ab_1280.jpg",
+    "stock": 20,
+    "rating": 4.8
+  },
+  {
+    "id": 6,
+    "name": "Gaming Console",
+    "description": "Next-gen gaming console with 4K gaming support",
+    "price": 499.99,
+    "category": "Electronics",
+    "image": "https://pixabay.com/get/g7acdcf215bc8082aa96469aafc46661b795aca584786672ea99522e9347e0d9da66dd79969a4ccf4afd6879ed7e374fb8c0a9eeb72ee82f381bc23162870feec_1280.jpg",
+    "stock": 12,
+    "rating": 4.4
+  },
+  {
+    "id": 7,
+    "name": "Designer Sneakers",
+    "description": "Limited edition designer sneakers with premium materials",
+    "price": 199.99,
+    "category": "Fashion",
+    "image": "https://pixabay.com/get/g705c804369a9bb96d9f0322c48c24204aff6811ae5c711c231dd64643c831ea9238b7e36c23f0df1b61a90b6ddf07d0e1f480eb9c4e6e36397f9dc486c3b6424_1280.jpg",
+    "stock": 35,
+    "rating": 4.2
+  },
+  {
+    "id": 8,
+    "name": "Luxury Handbag",
+    "description": "Premium leather handbag with elegant design",
+    "price": 349.99,
+    "category": "Fashion",
+    "image": "https://pixabay.com/get/gf6b7972f2c9d4679894475002c652531651fc1707e7ec1691d30de8b95651849fae5bb8bd31d3d6803f1c06aa3d9c582297e88fe3fc53d0c3bae3bf0be1d0da1_1280.jpg",
+    "stock": 18,
+    "rating": 4.5
+  },
+  {
+    "id": 9,
+    "name": "Professional Hair Dryer",
+    "description": "Salon-quality hair dryer with multiple heat settings",
+    "price": 129.99,
+    "category": "Fashion",
+    "image": "https://pixabay.com/get/gf515d3c1adc2c96fe07c661c93030da1e2f048f4ef2632c515dbb655c58c1c2825c6aaa0410b51ccc9094d589acb6f71c58535e01b696e2a37dc328524f9ad9d_1280.jpg",
+    "stock": 45,
+    "rating": 4.1
+  },
+  {
+    "id": 10,
+    "name": "Designer Sunglasses",
+    "description": "UV protection sunglasses with designer frames",
+    "price": 159.99,
+    "category": "Fashion",
+    "image": "https://pixabay.com/get/g803ed375e08ee2eaad453a67c982a79a35a6c31679999230b0ed026e72b11906d8081f6465de78633aa0e27405cf9e80c2fc90ed54c5e94721d8e0a8847474c6_1280.jpg",
+    "stock": 28,
+    "rating": 4.0
+  },
+  {
+    "id": 11,
+    "name": "Coffee Machine Espresso",
+    "description": "Professional espresso machine for home use",
+    "price": 599.99,
+    "category": "Home Appliances",
+    "image": "https://pixabay.com/get/ged87e644e4128ba9b7b7b71365a5c3809851d8c9e8759c84e6e71b994db5db0e6f6f1fdca6af051719007e40bc1c0795b9de3fcd70728d518b8675be07d522d7_1280.jpg",
+    "stock": 22,
+    "rating": 4.6
+  },
+  {
+    "id": 12,
+    "name": "Robot Vacuum Cleaner",
+    "description": "Smart robot vacuum with app control and mapping",
+    "price": 449.99,
+    "category": "Home Appliances",
+    "image": "https://pixabay.com/get/ge5481763e8e0e8ebb00ca9a25a121d4849a23e5d5bd834bfddc84e97740961df41cf64a00e7b429ac029947146f8c76f_1280.jpg",
+    "stock": 16,
+    "rating": 4.4
+  },
+  {
+    "id": 13,
+    "name": "Air Fryer Digital",
+    "description": "Large capacity air fryer with digital controls",
+    "price": 179.99,
+    "category": "Home Appliances",
+    "image": "https://pixabay.com/get/gca5c9b39a17cc915b753eb27d611b1701c41d6feaee29837f5c714d158e980ffa15243ad050d2dc77e0dd3c7ab092de1_1280.jpg",
+    "stock": 33,
+    "rating": 4.3
+  },
+  {
+    "id": 14,
+    "name": "Stand Mixer Professional",
+    "description": "Heavy-duty stand mixer for all your baking needs",
+    "price": 329.99,
+    "category": "Home Appliances",
+    "image": "https://pixabay.com/get/g5718c8daf23155835db0cafc2b41b0ebb9d24f780caa7de3f0e594c5d230d9f6ec5b8468ad6b47c73f009521ca1695a6_1280.jpg",
+    "stock": 19,
+    "rating": 4.7
+  },
+  {
+    "id": 15,
+    "name": "Premium Backpack",
+    "description": "Durable travel backpack with multiple compartments",
+    "price": 89.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/g8f8cbe0c7101ec4a1e9b4aa4b9e492e836c07fec9db529dcc5a7ea6fb4f6b2ee4a9dc58348b8ccd890f86362d874e20c78ee92ad99715003910e16ac12d4fd4e_1280.jpg",
+    "stock": 42,
+    "rating": 4.2
+  },
+  {
+    "id": 16,
+    "name": "Fitness Tracker",
+    "description": "Advanced fitness tracker with heart rate monitoring",
+    "price": 149.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/ga1152ae9b5be535d0509a71cd46ff48ad1fa789f9ab075f91986e0f499af4bba2a708fec3d2feb9b4443222961e46abacf399daf869ca5f0d6be4b00d1108c0e_1280.jpg",
+    "stock": 37,
+    "rating": 4.1
+  },
+  {
+    "id": 17,
+    "name": "Wireless Speaker",
+    "description": "Portable Bluetooth speaker with premium sound quality",
+    "price": 79.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/g3dc275549d3c4d6edee670ff40fc9772d1a65297dfe51ebfa8dcc5a32a78f422266ee1e76929d2ddd253b53c16e86f1e24b14adefb4a94ea2279be283e973b66_1280.jpg",
+    "stock": 55,
+    "rating": 4.0
+  },
+  {
+    "id": 18,
+    "name": "LED Desk Lamp",
+    "description": "Adjustable LED desk lamp with USB charging port",
+    "price": 49.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/g88ebe7f482c4fba2ec156f3343715ba0bd82866f727fa944425b8df766d61eb3fd7187aa6f04b47fc9654f4db71e0ed670dc6e78ecff1c98ced8f708f5a7b718_1280.jpg",
+    "stock": 60,
+    "rating": 3.9
+  },
+  {
+    "id": 19,
+    "name": "Water Bottle Insulated",
+    "description": "Double-wall insulated water bottle keeps drinks cold/hot",
+    "price": 24.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/gcdece2a3705753b6367a29588f9e609cf170af104577152fdddd33a8fc3c08379ffcd2533a5ae978d73acb0d103dc95ed1eaa00b91e4184b425120f8ec8ac2c0_1280.jpg",
+    "stock": 75,
+    "rating": 4.3
+  },
+  {
+    "id": 20,
+    "name": "Wireless Charger Pad",
+    "description": "Fast charging wireless pad compatible with all devices",
+    "price": 39.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/gd331dd8fa9d668cda7486cf077fb11025983261afc21e5523aae767ae79a28f9d826919c120351003dee990cc95a5f494b93beafb9db762fabb9293dd1ff54cf_1280.jpg",
+    "stock": 48,
+    "rating": 4.2
+  },
+  {
+    "id": 21,
+    "name": "Bluetooth Mouse",
+    "description": "Ergonomic wireless mouse with precision tracking",
+    "price": 34.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/g5828c03aef1ff9027f461b7d50571c051375af6ef2e81f1d2a71c841e8f958d629b04c6a71111cd9f7beeaa41acc63c9317a2542515a9b4f9896b928a1355bbb_1280.jpg",
+    "stock": 52,
+    "rating": 4.1
+  },
+  {
+    "id": 22,
+    "name": "Phone Case Premium",
+    "description": "Drop-proof phone case with military-grade protection",
+    "price": 29.99,
+    "category": "General",
+    "image": "https://pixabay.com/get/g6364725505b0c8a9f44cc40949babfe44db3f17c0a172289234fce3753d7aaa43dbf24adecb88bcecfa983bd7ee94944de723b5802a3beac3daa7768fb61068d_1280.jpg",
+    "stock": 65,
+    "rating": 4.0
+  }
+]

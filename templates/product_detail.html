@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - MercadoLibre Clone</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="{{ url_for('index') }}">
+                <i class="fas fa-shopping-cart me-2"></i>MercadoLibre
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search Form -->
+                <form class="d-flex mx-auto flex-grow-1 max-width-search" method="GET" action="{{ url_for('index') }}">
+                    <div class="input-group">
+                        <input class="form-control" type="search" name="search" placeholder="Buscar productos...">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Right side buttons -->
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-user me-1"></i>Ingresa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="fas fa-user-plus me-1"></i>Crea tu cuenta
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                                {{ cart_count }}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-5 pt-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('index', category=product.category) }}">{{ product.category }}</a></li>
+                <li class="breadcrumb-item active">{{ product.name }}</li>
+            </ol>
+        </nav>
+
+        <!-- Product Detail -->
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ product.image }}" class="card-img-top product-detail-image" alt="{{ product.name }}">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h1 class="card-title h3 mb-3">{{ product.name }}</h1>
+                        
+                        <!-- Rating -->
+                        <div class="mb-3">
+                            <div class="rating mb-2">
+                                {% for i in range(5) %}
+                                    {% if i < product.rating|int %}
+                                        <i class="fas fa-star text-warning"></i>
+                                    {% else %}
+                                        <i class="far fa-star text-warning"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                <span class="text-muted ms-2">({{ product.rating }} estrellas)</span>
+                            </div>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <h2 class="text-primary fw-bold mb-2">${{ "%.2f"|format(product.price) }}</h2>
+                            <p class="text-success mb-0">
+                                <i class="fas fa-truck me-1"></i>Envío gratis
+                            </p>
+                        </div>
+
+                        <!-- Stock -->
+                        <div class="mb-4">
+                            <p class="mb-2">
+                                <strong>Disponibilidad:</strong> 
+                                <span class="text-success">{{ product.stock }} unidades disponibles</span>
+                            </p>
+                            <p class="mb-0">
+                                <strong>Categoría:</strong> 
+                                <a href="{{ url_for('index', category=product.category) }}" class="text-decoration-none">
+                                    {{ product.category }}
+                                </a>
+                            </p>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <h5>Descripción</h5>
+                            <p class="text-muted">{{ product.description }}</p>
+                        </div>
+
+                        <!-- Add to Cart Form -->
+                        <form method="POST" action="{{ url_for('add_to_cart') }}" class="mb-4">
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <label for="quantity" class="form-label">Cantidad:</label>
+                                    <input type="number" class="form-control" name="quantity" value="1" min="1" max="{{ product.stock }}">
+                                </div>
+                                <div class="col-8 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="fas fa-cart-plus me-2"></i>Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Additional Actions -->
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success btn-lg">
+                                <i class="fas fa-bolt me-2"></i>Comprar ahora
+                            </button>
+                            <button class="btn btn-outline-secondary">
+                                <i class="fas fa-heart me-2"></i>Agregar a favoritos
+                            </button>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="mt-4">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <i class="fas fa-shield-alt text-primary fs-2 mb-2"></i>
+                                    <p class="small text-muted">Compra protegida</p>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fas fa-undo text-primary fs-2 mb-2"></i>
+                                    <p class="small text-muted">Devolución gratis</p>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fas fa-medal text-primary fs-2 mb-2"></i>
+                                    <p class="small text-muted">Garantía oficial</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4">Productos relacionados</h3>
+                <div class="text-center">
+                    <p class="text-muted">Descubre más productos en la categoría {{ product.category }}</p>
+                    <a href="{{ url_for('index', category=product.category) }}" class="btn btn-outline-primary">
+                        Ver más productos de {{ product.category }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-shopping-cart me-2"></i>Carrito de Compras
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    {% if cart %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in cart %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ item.image }}" alt="{{ item.name }}" 
+                                                     class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <span>{{ item.name }}</span>
+                                            </div>
+                                        </td>
+                                        <td>${{ "%.2f"|format(item.price) }}</td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('update_cart') }}" class="d-inline">
+                                                <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                                <input type="number" name="quantity" value="{{ item.quantity }}" 
+                                                       min="1" class="form-control form-control-sm" style="width: 70px; display: inline-block;">
+                                                <button type="submit" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-sync"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td class="fw-bold">${{ "%.2f"|format(item.price * item.quantity) }}</td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('remove_from_cart') }}" class="d-inline">
+                                                <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="border-top pt-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="{{ url_for('clear_cart') }}" class="btn btn-outline-danger">
+                                        <i class="fas fa-trash me-2"></i>Vaciar carrito
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <h4>Total: <span class="text-primary">${{ "%.2f"|format(cart_total) }}</span></h4>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <h5>Tu carrito está vacío</h5>
+                            <p class="text-muted">Agrega productos para comenzar tu compra</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar comprando</button>
+                    {% if cart %}
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-credit-card me-2"></i>Proceder al pago
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">Recordarme</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Ingresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Nombre completo</label>
+                            <input type="text" class="form-control" id="registerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Crear cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
