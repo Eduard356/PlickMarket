@@ -17,8 +17,9 @@ This is a Flask-based e-commerce web application with PlickMarket branding, feat
 
 ### Backend Architecture
 - **Framework**: Flask (Python web framework)
+- **Database**: PostgreSQL with SQLAlchemy ORM
 - **Session Management**: Flask sessions with secret key configuration
-- **Data Storage**: JSON file-based product catalog
+- **Data Storage**: PostgreSQL database with Product, User, and CartItem models
 - **Server**: Gunicorn WSGI server for production deployment
 
 ### Application Structure
@@ -36,10 +37,11 @@ This is a Flask-based e-commerce web application with PlickMarket branding, feat
 - **Cart Management (`/add_to_cart`)**: Shopping cart functionality (incomplete)
 
 ### Data Management
-- **Product Catalog**: JSON-based product storage with fields for:
+- **Product Catalog**: PostgreSQL database storage with fields for:
   - ID, name, description, price
   - Category, image URL, stock, rating
-- **Session Storage**: Cart data stored in Flask sessions
+- **Shopping Cart**: Database-backed cart items linked to session IDs
+- **User Management**: User table ready for authentication features
 
 ### User Interface
 - **Responsive Design**: Mobile-first Bootstrap implementation
@@ -49,18 +51,19 @@ This is a Flask-based e-commerce web application with PlickMarket branding, feat
 
 ## Data Flow
 
-1. **Product Loading**: JSON data loaded from `data/products.json` on each request
-2. **Search/Filter**: Query parameters processed to filter product list
+1. **Product Loading**: Product data retrieved from PostgreSQL database
+2. **Search/Filter**: Query parameters processed to filter product list from database
 3. **Template Rendering**: Filtered products passed to Jinja2 templates
 4. **Client Interaction**: JavaScript handles UI interactions and form submissions
-5. **Session Management**: Cart data persisted in Flask sessions
+5. **Cart Management**: Cart items stored in PostgreSQL with session ID tracking
+6. **Database Operations**: All CRUD operations handled through SQLAlchemy ORM
 
 ## External Dependencies
 
 ### Python Packages
 - `flask>=3.1.1`: Web framework
-- `flask-sqlalchemy>=3.1.1`: Database ORM (installed but not used)
-- `psycopg2-binary>=2.9.10`: PostgreSQL adapter (installed but not used)
+- `flask-sqlalchemy>=3.1.1`: Database ORM for PostgreSQL integration
+- `psycopg2-binary>=2.9.10`: PostgreSQL adapter for database connectivity
 - `gunicorn>=23.0.0`: Production WSGI server
 - `email-validator>=2.2.0`: Email validation utilities
 
@@ -69,7 +72,7 @@ This is a Flask-based e-commerce web application with PlickMarket branding, feat
 - Font Awesome 6.4.0: Icon library
 
 ### Infrastructure
-- PostgreSQL: Database system (configured but not implemented)
+- PostgreSQL: Database system (fully integrated and operational)
 - OpenSSL: Security library
 
 ## Deployment Strategy
@@ -98,6 +101,12 @@ This is a Flask-based e-commerce web application with PlickMarket branding, feat
   - Added comprehensive footer with contact information and social links
   - Fixed JavaScript error in smooth scrolling functionality
   - Maintained all existing functionality while updating visual design
+- June 16, 2025: Database integration completed:
+  - Migrated from JSON file storage to PostgreSQL database
+  - Created Product, User, and CartItem models with SQLAlchemy ORM
+  - Updated shopping cart functionality to use database storage
+  - Successfully migrated all 22 products to database
+  - Enhanced data persistence and scalability
 
 ## User Preferences
 
@@ -106,15 +115,12 @@ Preferred communication style: Simple, everyday language.
 ## Notes for Development
 
 ### Current Limitations
-- Shopping cart functionality is incomplete (add_to_cart route not finished)
 - No user authentication system implemented
-- Database integration prepared but not active (using JSON files)
 - No order processing or payment integration
+- No admin panel for product management
 
 ### Future Enhancement Areas
-- Complete shopping cart implementation
 - User registration and authentication
-- Database migration from JSON to PostgreSQL
 - Order management system
 - Payment gateway integration
 - Admin panel for product management
