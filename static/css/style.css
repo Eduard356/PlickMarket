@@ -51,6 +51,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Navigation styles */
 .navbar {
     background-color: var(--plick-yellow) !important;

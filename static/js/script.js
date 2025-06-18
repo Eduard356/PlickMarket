@@ -408,6 +408,9 @@ function printPage() {
     window.print();
 }
 
+
+
+
 /**
  * Share functionality
  */

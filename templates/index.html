@@ -24,32 +24,30 @@
                             <stop offset="100%" style="stop-color:#FF6426;stop-opacity:1" />
                         </linearGradient>
                     </defs>
-                    <!-- Background rounded rectangle -->
-                    <rect x="5" y="5" width="90" height="90" rx="15" ry="15" fill="url(#logoGradient)"/>
+                   
                     <!-- P letter with cart design -->
-                    <path d="M25 25 L25 75 M25 25 L45 25 Q55 25 55 35 Q55 45 45 45 L25 45 M25 50 L40 50" stroke="#FF6426" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    <!-- Cart wheels -->
-                    <circle cx="35" cy="70" r="3" fill="#FF6426"/>
-                    <circle cx="50" cy="70" r="3" fill="#FF6426"/>
-                </svg>
-                <span class="plick-logo-text">PlickMarket</span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Search Form -->
-                <form class="d-flex mx-auto flex-grow-1 max-width-search" method="GET" action="{{ url_for('index') }}">
-                    <div class="input-group">
-                        <input class="form-control" type="search" name="search" 
-                               placeholder="Buscar productos..." value="{{ search_query }}">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
+                    
+                    <div style="display: flex; align-items: center;">
+                      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="width: 50px; margin-right: -10px;">
+                      <span style="font-size: 18px; font-weight: bold; color: #000;margin-top: 10px;">PlickMarket</span>
                     </div>
-                </form>
+
+
+                    
+                <!-- Search Form -->
+                    <form method="GET" action="{{ url_for('index') }}" 
+                          style="margin-left: 80px; display: flex; justify-content: center; width: 100%;">
+                      <div class="input-group" style="max-width: 600px; width: 100%;">
+                        <input class="form-control" type="text" name="search"
+                               placeholder="Buscar productos..." 
+                               value="{{ request.args.get('search', '') }}" required>
+                        <button class="btn btn-primary" type="submit">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
+                    </form>
+
+
                 
                 <!-- Right side buttons -->
                 <ul class="navbar-nav ms-3">
@@ -87,21 +85,20 @@
                         <p class="lead text-dark mb-4">Infórmate acá y compra sin salir de tu casa</p>
                         <button class="btn btn-primary btn-lg px-4">Compra Ahora y paga después</button>
                     </div>
-                    <div class="col-md-4 text-center">
-                        <svg class="hero-logo" width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="heroLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#FFD126;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#FF6426;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect x="5" y="5" width="90" height="90" rx="15" ry="15" fill="url(#heroLogoGradient)"/>
-                            <path d="M25 25 L25 75 M25 25 L45 25 Q55 25 55 35 Q55 45 45 45 L25 45 M25 50 L40 50" stroke="#FF6426" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            <circle cx="35" cy="70" r="3" fill="#FF6426"/>
-                            <circle cx="50" cy="70" r="3" fill="#FF6426"/>
-                        </svg>
-                        <h3 class="mt-3 fw-bold">PlickMarket</h3>
+                    <div style="
+                      position: absolute;
+                      top: 10px;     /* distancia desde la parte superior */
+                      left: 330px;    /* distancia desde la izquierda */
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                    ">
+                      <img src="{{ url_for('static', filename='logoam.png') }}" alt="Logo" style="width: 300px; height: auto;">
+                      <span style="font-size: 40px; font-weight: bold; margin-top: -50px;">PlickMarket</span>
                     </div>
+
+                    </div>
+
                 </div>
             </div>
         </section>
